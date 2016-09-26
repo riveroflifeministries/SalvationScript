@@ -1,4 +1,4 @@
-package com.salvationscript;
+package com.rolm.salvationscript;
 
 import com.facebook.react.ReactActivity;
 

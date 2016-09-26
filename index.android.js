@@ -1,32 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict';
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, StyleSheet, View } from 'react-native';
+
+import { COLOR, ThemeProvider, Toolbar } from 'react-native-material-ui';
+import TaskDescriptionAndroid from 'react-native-android-taskdescription';
+import StatusBarAndroid from 'react-native-android-statusbar';
+
+import Script from './scr/content/Script';
+
+
+const uiTheme = {
+  palette: {
+    primaryColor: COLOR.teal500,
+  },
+  toolbar: {
+    container: {
+      height: 56,
+    },
+  },
+};
+
+
 
 class SalvationScript extends Component {
   render() {
+    StatusBarAndroid.setHexColor(COLOR.teal700);
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <ThemeProvider uiTheme={uiTheme}>
+        <View
+          style={styles.container}
+          showsVerticalScrollIndicator={false}>
+          <TaskDescriptionAndroid backgroundColor={COLOR.teal600} />
+          <Toolbar centerElement="Salvation Script" />
+
+          <Script />
+        </View>
+      </ThemeProvider>
     );
   }
 }
@@ -34,20 +45,8 @@ class SalvationScript extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+
 });
 
 AppRegistry.registerComponent('SalvationScript', () => SalvationScript);
